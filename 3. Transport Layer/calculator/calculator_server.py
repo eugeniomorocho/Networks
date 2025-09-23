@@ -43,6 +43,7 @@ def handle_request(data):
 # Socket setup
 # -----------------------------
 server_socket = socket.socket()        # Create a TCP socket (IPv4 + TCP)
+server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # Allow reuse of the address
 server_socket.bind((HOST, PORT))      # Bind socket to HOST and PORT
 server_socket.listen(5)                # Listen for connections. '5' = max queued connections
 print(f"Calculator server running on {HOST}:{PORT}")  # Inform server is ready
