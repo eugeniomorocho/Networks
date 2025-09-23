@@ -6,7 +6,7 @@ import json
 # -----------------------------
 # Configuration
 # -----------------------------
-HOST = "localhost"  # Server IP
+HOST = "3.91.252.148"  # Server IP
 PORT = 80         # Must match server's port
 
 # -----------------------------
