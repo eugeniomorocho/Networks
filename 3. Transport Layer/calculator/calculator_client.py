@@ -40,3 +40,4 @@ try:
         print(f"Error from server: {response.get('error')} (code {response.get('code')})")
 
 except ConnectionRefusedError:
+    print("Could not connect to the server. Is it running?")
