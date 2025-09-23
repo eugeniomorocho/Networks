@@ -5,6 +5,7 @@ HOST = '0.0.0.0'  # IP address where the server will listen. '0.0.0.0' means "al
 PORT = 80         # Port where the server will listen for incoming connections. 80 is standard HTTP port.
 
 s = socket.socket()        # Creates a TCP socket (IPv4 + TCP by default). The first `socket` is the module you imported. The second `socket()` is the class inside the module that creates a new socket.
+s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # Allow reuse of the address
 s.bind((HOST, PORT))       # Binds the socket to the specified address and port.
 s.listen(1)                # Configures the socket to listen for incoming connections. The number (1) is the maximum number of queued connections. It does NOT create threads. For multiple clients, use threading/asyncio.
 print("TCP server waiting for connection...")  # Prints a message indicating the server is ready.
