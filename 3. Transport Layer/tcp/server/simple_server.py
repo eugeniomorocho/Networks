@@ -12,6 +12,6 @@ print("TCP server waiting for connection...")  # Prints a message indicating the
 
 conn, addr = s.accept()    # Waits for a client to connect. Returns a new socket object for this connection (conn) and the client's address (addr).
 print(f"Connected to {addr}")    # formatted-string literal (the "f" before the string) allows embedding variables directly inside `{}`.
-conn.send(b"Hello from Dockerized EC2 server!")    # Sends a message to the client. The 'b' before the string means "bytes literal". TCP sockets require bytes, not a regular string.
+conn.send(b"Hello from EC2 server!")    # Sends a message to the client. The 'b' before the string means "bytes literal". TCP sockets require bytes, not a regular string.
 
 conn.close()  # Closes the connection with the client.
