@@ -2,7 +2,7 @@
 import socket
 
 HOST = 'localhost'
-PORT = 12345
+PORT = 80
 
 s = socket.socket()
 s.connect((HOST, PORT))
