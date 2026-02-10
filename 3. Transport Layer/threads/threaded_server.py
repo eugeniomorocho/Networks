@@ -1,52 +1,70 @@
-# threaded_server.py
+from http.server import HTTPServer, BaseHTTPRequestHandler  # Minimal HTTP server
+from socketserver import ThreadingMixIn                    # Allows threaded server
+import urllib.parse                                       # Parse form data
 
-import socket       # 'socket' module to create network connections (TCP/UDP).
-import threading    # 'threading' module to handle multiple threads running in parallel.
-import json         # 'json' module (not used here, but useful for sending/receiving structured data).
+# The image file and correct answer
+IMAGE_FILE = "cat_1.jpg"
+CORRECT_ANSWER = "cat"
 
-# IP address where the server will listen.
-# "0.0.0.0" means "all available network interfaces" (accepts connections from any IP).
-HOST = "0.0.0.0"
+# Minimal request handler
+class Handler(BaseHTTPRequestHandler):
+    # Handle GET requests: show form or image
+    def do_GET(self):
+        if self.path == f"/{IMAGE_FILE}":  # Serve the image
+            try:
+                with open(IMAGE_FILE, "rb") as f:  # Open image in binary mode
+                    self.send_response(200)
+                    self.send_header("Content-type", "image/jpeg")
+                    self.end_headers()
+                    self.wfile.write(f.read())      # Send image bytes
+            except FileNotFoundError:
+                self.send_error(404, "Image not found")
+        else:  # Serve HTML form
+            html = f"""
+            <html><body>
+            <h2>Guess the Image Game</h2>
+            <img src="{IMAGE_FILE}" width="300"><br><br>
+            <form method="POST">
+              Name: <input name="name"><br>
+              Guess: <input name="guess"><br>
+              <input type="submit">
+            </form>
+            </body></html>
+            """
+            self.send_response(200)
+            self.send_header("Content-type", "text/html")
+            self.end_headers()
+            self.wfile.write(html.encode())  # Send HTML to browser
 
-# Port where the server will listen for incoming connections.
-# 9090 is a non-privileged port (>1024).
-PORT = 9090
+    # Handle POST requests: process form submission
+    def do_POST(self):
+        length = int(self.headers['Content-Length'])           # Length of POST data
+        post = self.rfile.read(length).decode()               # Read POST data
+        data = urllib.parse.parse_qs(post)                    # Parse form fields
+        name = data.get("name", ["Unknown"])[0]               # Get name field
+        guess = data.get("guess", [""])[0].lower()            # Get guess field, lowercase
 
-# Function that runs every time a client connects to the server.
-# 'conn' → the socket object representing the client connection.
-# 'addr' → a tuple (IP, port) identifying the client.
-def client_handler(conn, addr):
-    print(f"New connection: {addr}")                   # Print the client address.
-    conn.send(b"Welcome to the threaded server!\n")    # Send a welcome message to the client (must be bytes).
-    conn.close()                                       # Close the connection once the client is served.
+        # Check guess
+        if guess == CORRECT_ANSWER.lower():
+            msg = f"Congrats {name}, you won!"
+        else:
+            msg = f"Sorry {name}, wrong guess."
 
-# Create the server socket.
-# By default, socket() creates an IPv4 (AF_INET) TCP (SOCK_STREAM) socket.
-s = socket.socket()
+        # Respond with result page
+        html = f"<html><body><h2>{msg}</h2><a href='/'>Try Again</a></body></html>"
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        self.wfile.write(html.encode())
 
-# Bind the socket to the specified address and port.
-# This tells the OS that the server will listen on (HOST, PORT).
-s.bind((HOST, PORT))
+# Threaded HTTP server
+class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
+    """Handle requests in separate threads."""
+    pass
 
-# Put the socket into listening mode.
-# The argument '5' is the backlog: maximum number of queued connections.
-s.listen(5)
-
-# Print a message so we know the server is running.
-print(f"Threaded server running on {HOST}:{PORT}")
-
-# Infinite loop to keep accepting clients.
-while True:
-    # Wait for a client to connect.
-    # 'conn' → socket object to communicate with the client.
-    # 'addr' → client's address as a tuple (IP, port).
-    conn, addr = s.accept()
-
-    # Create a new thread to handle the client.
-    # target=client_handler → the function this thread will run.
-    # args=(conn, addr) → arguments passed to that function.
-    thread = threading.Thread(target=client_handler, args=(conn, addr))
-
-    # Start the thread. This launches client_handler(conn, addr) in parallel,
-    # so the server can keep accepting new clients without waiting for the current one to finish.
-    thread.start()
+# Run server
+if __name__ == "__main__":
+    server_address = ("", 8080)              # Listen on all interfaces, port 8080
+    httpd = ThreadedHTTPServer(server_address, Handler)  # Threaded server
+    print("Server running on http://localhost:8080")
+    httpd.serve_forever()                    # Start server, runs forever
