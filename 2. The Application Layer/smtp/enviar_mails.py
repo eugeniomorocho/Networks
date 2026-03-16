@@ -58,8 +58,8 @@ with open(CONTENIDO_HTML, 'r', encoding='utf-8') as file:
 # ------- Configuración del servidor SMTP (Ejemplo con Gmail)
 smtp_server = 'smtp.office365.com'  # Dirección del servidor SMTP de Exchange Online
 smtp_port = 587  # Puerto recomendado para conexión segura TLS
-email_user = 'maestriainteligenciaartificial@yachaytech.edu.ec'
-email_password = 'Ecuador2030*'  # Usa una contraseña de aplicación si tienes 2FA habilitada
+email_user = 'user@domain.com'
+email_password = 'password'  # Usa una contraseña de aplicación si tienes 2FA habilitada
 
 # ------- Iniciar la conexión al servidor SMTP
 try:

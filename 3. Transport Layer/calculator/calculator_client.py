@@ -3,8 +3,8 @@
 import socket       # Import socket library for network communication
 import json         # Import JSON library to serialize/deserialize data
 
-HOST = "3.91.252.148"   # Server IP address (replace with actual AWS server IP)
-PORT = 80               # Server port (must be the same as the server)
+HOST = "localhost"   # Server IP address (replace with actual AWS server IP)
+PORT = 80             # Server port (must be the same as the server)
 
 # Ask user for numbers first
 a_input = input("Enter first number: ")   # Prompt user for first number
