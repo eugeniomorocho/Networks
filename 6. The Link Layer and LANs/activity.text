@@ -1,0 +1,17 @@
+1. Increase num_nodes to 10
+- What happens to CSMA collisions?
+
+2. Reduce p_transmit to 0.2
+- Does CSMA improve?
+
+3. Modify 5G scheduler:
+Give priority to node 0
+- How would you implement QoS?
+
+4. Add packet queue:
+Each node has packets waiting
+- Who gets served first?
+
+5. Answer the following questions:
+- Why doesn’t WiFi use TDMA?
+- Why doesn’t 5G use CSMA?
