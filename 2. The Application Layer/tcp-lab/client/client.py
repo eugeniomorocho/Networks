@@ -1,4 +1,3 @@
-# client.py
 import socket
 
 HOST = '<EC2-public-IP>'
