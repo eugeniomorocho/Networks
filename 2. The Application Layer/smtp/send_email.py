@@ -31,7 +31,7 @@ msg.add_alternative(html, subtype='html')
 # Configuración del servidor SMTP de Outlook
 smtp_server = 'smtp.office365.com'
 smtp_port = 587
-smtp_user = 'sf4e@outlook.com'
+smtp_user = 'mail@outlook.com'
 smtp_password = 'TU_APP_PASSWORD'
 
 # Enviar correo

@@ -22,7 +22,7 @@ CONTENIDO_HTML = "01_entrevistas/correo_entrevistas.html"
 
 # Subject del correo
 # CORREO_SUBJECT = "¡Inscríbete a la Maestría en IA! 🚀"
-CORREO_SUBJECT = "Agenda tu entrevista para la Maestría en Inteligencia Artificial"
+CORREO_SUBJECT = "Agenda tu entrevista"
 
 # ----------------------------------------------------------------------
 
