@@ -54,7 +54,7 @@ By the end of the course, students should be able to:
 **Chapter:** 1, *Computer Networks and the Internet*
 
 [![Open in GitHub](https://img.shields.io/badge/Open%20in-GitHub-181717?logo=github)](https://github.com/eugeniomorocho/Networks/tree/main/1.%20Computer%20Networks%20and%20The%20Internet)
-[![Canva Slides](https://img.shields.io/badge/Canva-slides-7D2AE8?logo=canva&logoColor=white)](#)
+[![Canva Slides](https://img.shields.io/badge/Canva-slides-7D2AE8?logo=canva&logoColor=white)](https://canva.link/7zv34vxdx2willw)
 [![Notion Lecture](https://img.shields.io/badge/Notion-lecture-37352F?logo=notion&logoColor=white)](https://upbeat-beef-3ff.notion.site/Lecture-slides-Computer-Networks-and-the-Internet-2f5915764eda81f8bff9c363e346dce8?pvs=25)
 
 **Laboratory:** [Lab 1: Getting Started with Wireshark](https://upbeat-beef-3ff.notion.site/Lab-1-Getting-Started-with-Wireshark-2f5915764eda81e49cc0d2a91c6fa95a?pvs=25)
