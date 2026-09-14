@@ -4,7 +4,7 @@ import socket                                      # TCP socket communication
 import json                                        # JSON parsing and serialization
 
 HOST = "0.0.0.0"                                    # Listen on all network interfaces
-PORT = 80                                          # Server port
+PORT = 1234                                         # Server port
 
 def handle_request(data):                          # Process one client request
     try:
