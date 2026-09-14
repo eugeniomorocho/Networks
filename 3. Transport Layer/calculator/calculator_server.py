@@ -15,7 +15,7 @@ def handle_request(data):                          # Process one client request
 
         # TODO 1: Check if any required parameter is missing
 
-        # TODO 2: Validate that a and b can be converted to numbers (int, or float)
+        # TODO 2: Validate that a and b can be converted to numbers
 
         # TODO 3: Implement the supported operations (add, sub, mul, div)
 
