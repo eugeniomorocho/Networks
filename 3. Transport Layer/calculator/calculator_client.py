@@ -8,7 +8,7 @@ PORT = 80                                          # Server port
 
 a = input("Enter first number: ")                  # Read first value as text
 b = input("Enter second number: ")                 # Read second value as text
-operation = input("Enter operation (+, -, *, /): ") # Read operation as text
+operation = input("Enter operation (add, sub, mul, div): ") # Read operation as text
 
 payload = {                                        # Create request dictionary
     "a": a,                                        # Store first value

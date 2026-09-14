@@ -17,7 +17,7 @@ def handle_request(data):                          # Process one client request
 
         # TODO 2: Validate that a and b are valid numbers
 
-        # TODO 3: Implement the supported operations (+, -, *, /)
+        # TODO 3: Implement the supported operations (add, sub, mul, div)
 
         # TODO 4: Handle division by zero
 
