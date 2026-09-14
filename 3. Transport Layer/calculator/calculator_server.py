@@ -15,19 +15,24 @@ def handle_request(data):                          # Process one client request
 
         # TODO 1: Check if any required parameter is missing
 
-        # TODO 2: Validate that a and b are valid numbers
+        # TODO 2: Validate that a and b can be converted to numbers (int, or float)
 
         # TODO 3: Implement the supported operations (add, sub, mul, div)
 
         # TODO 4: Handle division by zero
 
         # TODO 5: Handle unsupported operations
-
-        # Example of a successful response
-        return {"code": 200, "result": a + b}      # Temporary example
+        
+        # TODO 6: Return a successful response using the standardized format:
+				#
+				# {
+				#     "result": <result>,
+				#     "error": null,
+				#     "code": 200
+				# }
 
     except json.JSONDecodeError:
-        # TODO 6: Return an appropriate error for invalid JSON
+        # TODO 7: Return an appropriate error for invalid JSON
         pass
 
 # Create TCP socket
