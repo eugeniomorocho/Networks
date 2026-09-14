@@ -1,9 +1,10 @@
 import socket # Import Python's built-in socket module to create a TCP socket
 
 HOST = '0.0.0.0' # Listen on all available network interfaces (IP addresses)
-PORT = 12345 # Defines the TCP port where the server will listen
+PORT = 12345 # Defines the TCP port where the server will listen. Ports below 1024 are reserved for system use, so we choose a port above that range. The port number must match the one used by the client to establish a connection.
 
 s = socket.socket() # Create a TCP socket. Default arguments: socket.AF_INET (IPv4), socket.SOCK_STREAM (TCP)
+s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # Allow reuse of the address. This is useful when restarting the server, as it allows the socket to bind to an address that is in a TIME_WAIT state. Without this option, the server may fail to bind if the previous connection is still lingering in the OS's socket table.
 s.bind((HOST, PORT)) # Bind the socket to the specified address and port
 s.listen(1) # Start listening for incoming connections (1 pecifies the backlog, i.e. how many pending connections the OS can queue while the application is not yet accepting them). Default backlog is usually 5, but here we set it to 1 for simplicity. If the backlog is exceeded, new connection attempts may be refused or ignored by the OS.
 print("TCP server waiting for connection...") # Print that the server is ready to accept connections

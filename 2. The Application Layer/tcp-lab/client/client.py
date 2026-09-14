@@ -1,7 +1,7 @@
 import socket # Import Python's built-in socket module to create a TCP socket
 
 HOST = '<EC2-public-IP>' # The public IPv4 address of your AWS EC2 instance
-PORT = 12345 # The port number to connect to
+PORT = 12345 # The port number to connect to. Must match the port number used by the server. Ports below 1024 are reserved for system use, so we choose a port above that range.
 
 s = socket.socket() # Create a TCP socket for the client. Default arguments: socket.AF_INET (IPv4), socket.SOCK_STREAM (TCP)
 s.connect((HOST, PORT)) # Connect to the server using the specified network address and port. Behind the scenes, this method performs a three-way handshake to establish a TCP connection with the server. If the server is not reachable or the connection fails, an exception will be raised.
