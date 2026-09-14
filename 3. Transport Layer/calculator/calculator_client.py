@@ -3,7 +3,7 @@
 import socket                                      # TCP socket communication
 import json                                        # JSON serialization
 
-HOST = "localhost"                                 # Server IP address.
+HOST = "<server_ip>"                                 # Server IP address.
 PORT = 80                                          # Server port
 
 a = input("Enter first number: ")                  # Read first value as text
@@ -21,5 +21,5 @@ s.connect((HOST, PORT))                # Connect to server
 s.send(json.dumps(payload).encode())   # Serialize and send request. json.dumps(payload) converts the payload dictionary into a JSON string, and .encode() converts that string into bytes, which is the format required for sending data over a socket.
 
 response = s.recv(1024).decode()       # Receive server response
-print("Server response:", response)                # Display response
+print("Server response:", response)    # Display response
 s.close()                              # Close connection
