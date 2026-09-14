@@ -7,7 +7,6 @@ HOST = "0.0.0.0"                                    # Listen on all network inte
 PORT = 80                                          # Server port
 
 def handle_request(data):                          # Process one client request
-
     try:
         payload = json.loads(data)                 # Convert JSON string into dictionary
 
@@ -15,23 +14,37 @@ def handle_request(data):                          # Process one client request
         b = payload.get("b")                       # Get second value
         operation = payload.get("operation")       # Get requested operation
 
-        # TODO 1: Check if any required parameter is missing
+        if a is None or b is None or operation is None:  # Check missing parameters
+            return {"code": 400, "error": "MISSING_PARAMETER"}
 
-        # TODO 2: Validate that a and b are valid numbers
+        try:
+            a = float(a)                            # Convert first value to number
+            b = float(b)                            # Convert second value to number
+        except ValueError:
+            return {"code": 400, "error": "INVALID_NUMBER"}
 
-        # TODO 3: Implement the supported operations (+, -, *, /)
+        if operation == "+":                       # Addition
+            result = a + b
 
-        # TODO 4: Handle division by zero
+        elif operation == "-":                     # Subtraction
+            result = a - b
 
-        # TODO 5: Handle unsupported operations
+        elif operation == "*":                     # Multiplication
+            result = a * b
 
-        # Example of a successful response
-        return {"code": 200, "result": a + b}      # Temporary example
+        elif operation == "/":                     # Division
+            if b == 0:                              # Check division by zero
+                return {"code": 400, "error": "DIVISION_BY_ZERO"}
 
-    except json.JSONDecodeError:
-        # TODO 6: Return an appropriate error for invalid JSON
-        pass
+            result = a / b
 
+        else:                                      # Unsupported operation
+            return {"code": 400, "error": "UNSUPPORTED_OPERATION"}
+
+        return {"code": 200, "result": result}      # Successful response
+
+    except json.JSONDecodeError:                   # Invalid JSON received
+        return {"code": 400, "error": "INVALID_JSON"}
 
 # Create TCP socket
 server_socket = socket.socket()                    # Create IPv4 TCP socket
@@ -48,7 +61,6 @@ server_socket.listen(5)                            # Start listening for connect
 print(f"Calculator server running on {HOST}:{PORT}") # Display server status
 
 while True:                                        # Keep server running
-
     conn, addr = server_socket.accept()            # Accept incoming connection
 
     print(f"Connection from {addr}")               # Display client address
