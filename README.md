@@ -1,9 +1,5 @@
 # Networks
 
-![Course](https://img.shields.io/badge/course-Networks-1f6feb?style=for-the-badge)
-![Language](https://img.shields.io/badge/materials-English-2ea44f?style=for-the-badge)
-![Python](https://img.shields.io/badge/labs-Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-
 Course notes, demonstrations, laboratories, and exercises for **Computer Networks**, based on *Computer Networking: A Top-Down Approach*. The course is taught in English and combines protocol theory with practical Python networking experiments.
 
 The complete 2026 course workspace is maintained in [Notion](https://upbeat-beef-3ff.notion.site/2026-Networks-2f5915764eda8021b53bd94c381ea78c). This repository contains the code and notebooks that support the lectures and laboratories.
@@ -274,3 +270,14 @@ When adding a new laboratory or activity:
 2. Include a short `README.md` with prerequisites and execution steps when needed.
 3. Keep examples reproducible and avoid committing passwords, API keys, or personal credentials.
 4. Add the activity to the corresponding **Materials** list above.
+
+![Course](https://img.shields.io/badge/course-Networks-1f6feb?style=for-the-badge)
+![Language](https://img.shields.io/badge/materials-English-2ea44f?style=for-the-badge)
+![Python](https://img.shields.io/badge/labs-Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+
+---
+<br>
+<p style="text-align: right; font-size:14px; color:gray;">
+<b>Prepared by:</b><br>
+Manuel Eugenio Morocho-Cayamcela, Ph.D.
+</p>
